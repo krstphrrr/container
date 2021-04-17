@@ -1,0 +1,10 @@
+db-backups/*.mysql
+db-backups/*.sql
+db-backups/*.gz
+db-backups/*.xz
+db-backups/*.zip
+
+docroot/default/files
+docroot/default/private 
+docroot/default/themes
+.env

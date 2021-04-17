@@ -1,0 +1,5 @@
+1. script file that:
+- creates the emptydatabase 
+- allows everything for drupal user
+- unzip gz file 
+- restores dump 

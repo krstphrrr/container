@@ -1,0 +1,62 @@
+version: "3.9"
+services:
+  drupal:
+    build: 
+      context: . 
+      dockerfile: drupal/Dockerfile
+    image: krstphr/custom_drupal2:latest
+    ports:
+      - 8083:80 
+    container_name: drupal2
+    env_file:
+      - .env
+    volumes:
+      - drupal_test5_modules:/opt/drupal/web/modules
+      - drupal_test5_profiles:/opt/drupal/web/profiles
+      - drupal_test5_themes:/opt/drupal/web/themes
+      - drupal_test5_sites:/opt/drupal/web/sites
+      # libraries 
+      - ./drupal:/opt/drupal/web/sites/default2
+
+    restart: always 
+    
+  mysql:
+    build:
+      context: .
+      dockerfile: mysql/Dockerfile
+    image: krstphr/mysql_custom
+    ports:
+      - 3306:3306
+    container_name: mysql2
+    # entrypoint: /var/mysql/backups/entrypoint.sh users ${MUSR} ${MPW} ${MDB}
+    # command: /var/mysql/backups/wait-for-it.sh && /var/mysql/backups/entrypoint.sh
+    volumes:
+      - drupal_test5_dbdata:/var/lib/mysql
+      - ./db-backups:/var/mysql/backups:delegated
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MROOT}
+      MYSQL_DATABASE: ${MDB}
+      MYSQL_USER: ${MUSR} 
+      MYSQL_PASSWORD: ${MPW}
+
+  phpmyadmin:
+    build:
+      context: . 
+      dockerfile: phpmyadmin/Dockerfile
+    image: krstphr/custom_phpmyadmin2:latest
+    ports:
+      - 8090:80
+    container_name: phpmyadmin2
+    environment:  
+      PMA_HOST: mysql 
+    volumes:
+      - ./php_myadminexports:/testdir
+      - ./db-backups:/var/mysql/backups:delegated
+volumes:
+  # persistent modules , profiles, themes, sites( if multisite? )
+  drupal_test5_modules:
+  drupal_test5_profiles:
+  drupal_test5_themes:
+  drupal_test5_sites:
+  # persistent mysql data
+  drupal_test5_dbdata:
