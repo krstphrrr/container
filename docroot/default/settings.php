@@ -1,6 +1,6 @@
 <?php
 
-// @codingStandardsIgnoreFile
+// @codingStandardsIgnoreFile default one
 
 /**
  * @file
@@ -93,7 +93,7 @@ $databases['default']['default'] = array (
   'database' => getenv('MYSQL_DB'),
   'username' => getenv('MYSQL_USR'),
   'password' => getenv('MYSQL_PW'),
-  'host' => 'localhost',
+  'host' => 'mysql',
   'port' => '3306',
   'driver' => 'mysql',
   'prefix' => '',
@@ -757,7 +757,11 @@ $settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.yml';
 $settings['trusted_host_patterns'] = array(
   '^new\.jornada\.nmsu\.edu$',
   '^www\.new\.jornada\.nmsu\.edu$',
+  '^127.0.0.1$',
+  '^localhost$'
 );
+
+$cookie_domain = '127.0.0.1';
 
 /**
  * The default list of directories that will be ignored by Drupal's file API.
