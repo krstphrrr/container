@@ -536,7 +536,7 @@ if ($settings['hash_salt']) {
  * security by serving user-uploaded files from a different domain or subdomain
  * pointing to the same server. Do not include a trailing slash.
  */
-$settings['file_public_base_url'] = 'http://new.jornada.nmsu.edu/files';
+$settings['file_public_base_url'] = 'https://druptest.landscapedatacommons.org/files';
 
 /**
  * Public file path:
@@ -758,7 +758,8 @@ $settings['trusted_host_patterns'] = array(
   '^new\.jornada\.nmsu\.edu$',
   '^www\.new\.jornada\.nmsu\.edu$',
   '^127.0.0.1$',
-  '^localhost$'
+  '^localhost$',
+  '^druptest\.landscapedatacommons\.org$'
 );
 
 $cookie_domain = '127.0.0.1';
