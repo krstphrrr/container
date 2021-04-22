@@ -99,6 +99,8 @@ $databases['default']['default'] = array (
   'prefix' => '',
   'collation' => 'utf8mb4_general_ci',
 );
+
+$settings['config_sync_directory'] = '/opt/drupal/web/sites/default2/config/sync';
  
 /**
  * Customizing database settings.
@@ -536,7 +538,7 @@ if ($settings['hash_salt']) {
  * security by serving user-uploaded files from a different domain or subdomain
  * pointing to the same server. Do not include a trailing slash.
  */
-$settings['file_public_base_url'] = 'http://localhost:8083/files';
+#$settings['file_public_base_url'] = 'localhost:8083/files';
 
 /**
  * Public file path:
@@ -560,7 +562,7 @@ $settings['file_public_path'] = 'sites/default/files';
  * See https://www.drupal.org/documentation/modules/file for more information
  * about securing private files.
  */
-$settings['file_private_path'] = 'sites/new.jornada.nmsu.edu/private/files';
+$settings['file_private_path'] = 'sites/default/private/files';
 
 /**
  * Session write interval:
@@ -668,6 +670,7 @@ $settings['file_private_path'] = 'sites/new.jornada.nmsu.edu/private/files';
 # $config['system.theme']['default'] = 'stark';
 # $config['user.settings']['anonymous'] = 'Visitor';
 
+
 /**
  * Fast 404 pages:
  *
@@ -757,12 +760,10 @@ $settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.yml';
 $settings['trusted_host_patterns'] = array(
   '^new\.jornada\.nmsu\.edu$',
   '^www\.new\.jornada\.nmsu\.edu$',
-  '^127.0.0.1$',
   '^localhost$',
   '^druptest\.landscapedatacommons\.org$'
 );
 
-$cookie_domain = '127.0.0.1';
 
 /**
  * The default list of directories that will be ignored by Drupal's file API.

@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install apt-file -y && apt-file update \
 && apt-get install vim -y && apt-get install netcat -y
 
 # backup utilities available by default
-RUN composer require drupal/backup_migrate:5.0.0-rc2
+# RUN composer require drupal/backup_migrate:5.0.0-rc2
 
 # custom apache2 and settings.php 
 COPY ./phpmyadmin/apache2.conf /etc/apache2/apache2.conf
@@ -17,6 +17,12 @@ RUN cp -a /opt/drupal/web/sites/default/. /opt/drupal/web/sites/new.jornada.nmsu
 RUN COMPOSER_MEMORY_LIMIT=-1 composer require drush/drush 
 # making sure the drush path is available
 RUN export PATH="$HOME/.composer/vendor/bin:$PATH"
+
+RUN chown -R www-data /opt/drupal
+RUN chown -R www-data /var/www
+RUN chmod 777 -R /opt/drupal
+RUN chown -R www-data /tmp
+RUN chmod 777 -R /tmp
 
 # making custom scripts available
 COPY ./drupal/entrypoint.sh /usr/local/bin/
