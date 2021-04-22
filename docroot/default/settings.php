@@ -536,7 +536,7 @@ if ($settings['hash_salt']) {
  * security by serving user-uploaded files from a different domain or subdomain
  * pointing to the same server. Do not include a trailing slash.
  */
-$settings['file_public_base_url'] = 'http://localhost:8083';
+$settings['file_public_base_url'] = 'http://localhost:8083/files';
 
 /**
  * Public file path:
@@ -545,7 +545,7 @@ $settings['file_public_base_url'] = 'http://localhost:8083';
  * must exist and be writable by Drupal. This directory must be relative to
  * the Drupal installation directory and be accessible over the web.
  */
-$settings['file_public_path'] = 'sites/new.jornada.nmsu.edu/files';
+$settings['file_public_path'] = 'sites/default/files';
 
 /**
  * Private file path:
