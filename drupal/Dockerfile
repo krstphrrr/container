@@ -17,6 +17,9 @@ RUN cp -a /opt/drupal/web/sites/default/. /opt/drupal/web/sites/new.jornada.nmsu
 
 # local drush ( local with respect to the drupal install; not global)
 RUN COMPOSER_MEMORY_LIMIT=-1 composer require drush/drush 
+
+RUN COMPOSER_MEMORY_LIMIT=-1 composer require drupal/admin_toolbar:^3.0 drupal/business_responsive_theme:^1.3
+
 # making sure the drush path is available
 RUN export PATH="$HOME/.composer/vendor/bin:$PATH"
 
