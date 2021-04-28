@@ -4,6 +4,8 @@ FROM drupal:8
 RUN apt-get update && apt-get install apt-file -y && apt-file update \ 
 && apt-get install vim -y && apt-get install netcat -y
 
+RUN composer require drupal/admin_toolbar:^3.0 drupal/business_responsive_theme:^1.3
+
 # backup utilities available by default
 # RUN composer require drupal/backup_migrate:5.0.0-rc2
 
